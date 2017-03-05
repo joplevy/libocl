@@ -12,7 +12,7 @@
 
 #include "libocl.h"
 
-int		ocl_new_kernel(t_ocl_prog *prog, size_t nb_obj, size_t pws,
+int		ocl_new_kernel(t_ocl_prog *prog, size_t nb_obj, size_t *pws,
 		const char *format, ...)
 {
 	t_ocl_kernel	new;

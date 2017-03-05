@@ -17,6 +17,7 @@ t_ocl_kernel		ocl_kernel_init(void)
 	t_ocl_kernel	ret;
 
 	ret.memobj = NULL;
+	ret.work_dim = 1;
 	ret.obj_size = NULL;
 	ret.write = NULL;
 	ret.read = NULL;

@@ -24,6 +24,8 @@ int		ocl_get_karg(va_list ap, const char *str, t_ocl_kernel *k,
 	k->name = NULL;
 	while (str[++i])
 	{
+		if (str[i] == 'D' || str[i] == 'd')
+			k->work_dim = (size_t)va_arg(ap, int);
 		if ((str[i] == 'O' || str[i] == 'o') && ++j < (int)(k->nb_obj))
 			if (!(ocl_set_memobj(ap, k, p, j)))
 				return (0);
@@ -32,12 +34,10 @@ int		ocl_get_karg(va_list ap, const char *str, t_ocl_kernel *k,
 		if ((str[i] == 'R' || str[i] == 'r') && j < (int)(k->nb_obj) && j >= 0)
 			k->read[j] = va_arg(ap, void *);
 		if (str[i] == 'N' || str[i] == 'n')
-		{
-			k->name = va_arg(ap, char *);
-			k->kernel = clCreateKernel(p->program, k->name, &ret);
-			if (ret < 0)
-				return (ocl_error(ret, __func__));
-		}
+			if ((k->name = va_arg(ap, char *)) && 
+				(k->kernel = clCreateKernel(p->program, k->name, &ret)) &&
+				ret < 0)
+					return (ocl_error(ret, __func__));
 	}
 	return (1);
 }

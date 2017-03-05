@@ -145,7 +145,8 @@ static const char	*g_error_array[64] = {
 typedef struct			s_ocl_kernel
 {
 	char				*name;
-	size_t				public_work_size;
+	size_t				work_dim;
+	size_t				*public_work_size;
 	size_t				nb_obj;
 	cl_mem				*memobj;
 	size_t				*obj_size;
@@ -183,7 +184,7 @@ int						ocl_new_prog(char *filename, size_t max_src_size,
 ** 		dernier argument declarer
 */
 int						ocl_new_kernel(t_ocl_prog *prog, size_t nb_obj,
-						size_t pws, const char *format, ...);
+						size_t *pws, const char *format, ...);
 int						ocl_get_karg(va_list ap, const char *str,
 						t_ocl_kernel *k, t_ocl_prog *p);
 t_ocl_kernel			*ocl_get_right_kernel(t_list *start, char *kernel);
