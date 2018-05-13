@@ -182,7 +182,6 @@ int						ocl_new_prog(char *filename, size_t max_src_size,
 ** R -> recupere l'addresse d'une variable sur lequel ecrire les changement
 **		appliques par le kernel au lancement a appliquer sur le
 ** 		dernier argument declarer
-** D -> recupere le nombre de dimention du PWS
 */
 int						ocl_new_kernel(t_ocl_prog *prog, size_t nb_obj,
 						size_t *pws, const char *format, ...);
